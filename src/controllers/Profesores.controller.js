@@ -6,18 +6,25 @@ export const obtenerProfesores = async (req,res) => {
 export const crearProfesores = async (req,res) => {
     try {
         const { cedula, nombres, apellidos,email,telefono,oficina,habitacion, experiencia, fecha_graduado,cargo,profesion} = req.body;
+        const telefono_profesor = (telefono == null || telefono == undefined) ? null : telefono;
+        const oficina_profesor = (oficina == null || oficina == undefined) ? null : oficina;
+        const habitacion_profesor = (habitacion == null || habitacion == undefined) ? null : habitacion;
+        const experiencia_profesor = (experiencia == null || experiencia == undefined) ? null : experiencia;
+        const fecha_graduado_profesor = (fecha_graduado == null || fecha_graduado == undefined) ? null : fecha_graduado;
+        const cargo_profesor = (cargo == null || cargo == undefined) ? null : cargo;
+        const profesion_profesor = (profesion == null || profesion == undefined) ? null : profesion;
         const nuevo = await Profesores.create({
             cedula,
             nombres,
             apellidos,
             email,
-            telefono,
-            oficina,
-            habitacion,
-            experiencia,
-            fecha_graduado,
-            cargo,
-            profesion
+            telefono_profesor,
+            oficina_profesor,
+            habitacion_profesor,
+            experiencia_profesor,
+            fecha_graduado_profesor,
+            cargo_profesor,
+            profesion_profesor
         },
         {
             fields: ["cedula", "nombres", "apellidos","email","telefono","oficina","habitacion","experiencia", "fecha_graduado","cargo","profesion"]
