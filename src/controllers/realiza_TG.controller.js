@@ -4,6 +4,19 @@ export const obtenerRealiza_tg = async (req,res) => {
     const Realiza_tg = await Realiza_tg.findAll();
     res.json(Realiza_tg);
 };
+
+export const obtenerEstudiantesRealizaTG = async (req,res) => {
+    const trabajos = await TG.findAll({
+        include: [
+            {
+                model: Realiza_tg,
+                group: 'id_tg'
+            }
+        ]
+    })
+    res.json(trabajos)
+
+}
 export const crearRealiza_tg = async (req,res) => {
     try {
         const { cedula_estudiante, id_tg } = req.body;
