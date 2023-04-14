@@ -10,6 +10,7 @@ export const obtenerTG = async (req,res) => {
     const tg = await TG.findAll();
     res.json(tg);
 };
+
 export const crearTG = async (req,res) => {
     console.log("crearTG")
     try {
