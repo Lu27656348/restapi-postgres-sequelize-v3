@@ -265,6 +265,28 @@ export const obtenerTGSinRevisor = async (req, res) => {
     }
 }
 
+export const obtenerTGSinRevisorRealizaTG = async (req, res) => {
+    try {
+        const buscar = await TG.findAll({
+            where: {
+                estatus: 'PR',
+                id_profesor_revisor: {
+                    [Op.eq]: null
+                }
+            },
+            include: [
+                {
+                    model: Realiza_tg
+                }
+            ]
+        });
+        console.log(buscar)
+        return res.json(buscar);
+    } catch (error) {
+        return res.status(404).json("Error en busqueda por estatus");
+    }
+}
+
 export const obtenerTGConRevisor = async (req, res) => {
     try {
         const buscar = await TG.findAll({
@@ -281,7 +303,27 @@ export const obtenerTGConRevisor = async (req, res) => {
         return res.status(404).json("Error en busqueda por estatus");
     }
 }
-
+export const obtenerTGConRevisorRealizaTG = async (req, res) => {
+    try {
+        const buscar = await TG.findAll({
+            where: {
+                estatus: 'PR',
+                id_profesor_revisor: {
+                    [Op.ne]: null
+                }
+            },
+            include: [
+                {
+                    model: Realiza_tg
+                }
+            ]
+        });
+        console.log(buscar)
+        return res.json(buscar);
+    } catch (error) {
+        return res.status(404).json("Error en busqueda por estatus");
+    }
+}
 export const obtenerEstudiantesDeTG = async (req, res) => {
     const id = req.params.id
     try {
