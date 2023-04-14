@@ -12,8 +12,7 @@ export const obtenerEstudiantesRealizaTG = async (req,res) => {
         },
         include: [
             {
-                model: Realiza_tg,
-                group: 'id_tg'
+                model: Realiza_tg
             }
         ]
     })
