@@ -7,6 +7,9 @@ export const obtenerRealiza_tg = async (req,res) => {
 
 export const obtenerEstudiantesRealizaTG = async (req,res) => {
     const trabajos = await TG.findAll({
+        where: {
+            estatus: "PC"
+        },
         include: [
             {
                 model: Realiza_tg,
