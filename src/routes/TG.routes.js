@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { actualizarTG, anexarPlanilla, asignarRevisor, asignarTutorAcademico, asignarTutorEmpresarial, buscarTG, buscarTGByEstatus, buscarTGByModalidad, crearTG, descargarPlanilla, eliminarTG, evaluacionCDE, evaluacionComite, evaluacionRevisor, obtenerEstudiantesDeTG, obtenerTG, obtenerTGConRevisor, obtenerTGsinJurado, obtenerTGSinRevisor, obtenerTGconJurado, designarCDEJurado, obtenerPropuestasSinTutorAcademicoAsignado, defensaTrabajoDeGrado, obtenerTGSinRevisorRealizaTG, obtenerTGConRevisorRealizaTG, obtenerTGSinTutorAsignadoRealizaTG, obtenerTGSinConsejoEscuelaRealizaTG, obtenerTGSinJuradoAsignadoRealizaTG} 
+import { actualizarTG, anexarPlanilla, asignarRevisor, asignarTutorAcademico, asignarTutorEmpresarial, buscarTG, buscarTGByEstatus, buscarTGByModalidad, crearTG, descargarPlanilla, eliminarTG, evaluacionCDE, evaluacionComite, evaluacionRevisor, obtenerEstudiantesDeTG, obtenerTG, obtenerTGConRevisor, obtenerTGsinJurado, obtenerTGSinRevisor, obtenerTGconJurado, designarCDEJurado, obtenerPropuestasSinTutorAcademicoAsignado, defensaTrabajoDeGrado, obtenerTGSinRevisorRealizaTG, obtenerTGConRevisorRealizaTG, obtenerTGSinTutorAsignadoRealizaTG, obtenerTGSinConsejoEscuelaRealizaTG, obtenerTGSinJuradoAsignadoRealizaTG, obtenerTGconJuradoRealizaTG} 
 from '../controllers/TG.controller.js'
 const router = Router();
 router.get('/TG',obtenerTG);
@@ -36,6 +36,7 @@ router.put('/descargarPlanilla',descargarPlanilla);
 
 router.get('/sinJurado',obtenerTGsinJurado);
 router.get('/conJurado',obtenerTGconJurado);
+router.get('/conJuradoRealizaTG',obtenerTGconJuradoRealizaTG);
 router.put('/designarCDEJurado',designarCDEJurado);
 router.get('/SinTutorAcademicoAsignado',obtenerPropuestasSinTutorAcademicoAsignado);
 router.put('/defensaTrabajoDeGrado',defensaTrabajoDeGrado);
