@@ -421,7 +421,14 @@ export const obtenerTGconJurado = async (req, res) => {
 export const obtenerTGconJuradoRealizaTG = async (req, res) => {
     const{ id_tg, nombre_planilla } = req.body
     try {
-        const buscar =  await sequelize.query("SELECT T.*,RT.cedula_estudiante FROM TG AS T, Jurados AS J, Realiza_tg AS RT WHERE T.id_tg = J.id_tg AND RT.id_tg = T.id_tg AND RT.nota IS NULL GROUP BY T.id_tg, RT.cedula_estudiante ", { type: QueryTypes.SELECT});
+        const buscar =  await sequelize.query(`SELECT T.*,RT.cedula_estudiante 
+                                               FROM TG AS T, Jurados AS J, Realiza_tg AS RT 
+                                               WHERE T.id_tg = J.id_tg 
+                                               AND RT.id_tg = T.id_tg 
+                                               AND T.estatus = 'A'
+                                               AND RT.nota IS NULL 
+                                               GROUP BY T.id_tg,RT.cedula_estudiante  `,
+                              { type: QueryTypes.SELECT});
         return res.json(buscar);
     } catch (error) {
         return res.status(404).json(error);
