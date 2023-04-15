@@ -342,7 +342,7 @@ export const obtenerTGSinTutorAsignadoRealizaTG = async (req, res) => {
 }
 
 export const obtenerTGSinJuradoAsignadoRealizaTG = async (req, res)  => {
-    const buscar = await sequelize.query("SELECT T.*, R.cedula_estudiante FROM TG AS T LEFT JOIN Jurados AS J, Realiza_tg AS R ON T.id_tg = J.id_tg WHERE J.id_tg IS NULL AND T.estatus = 'A' AND R.id_tg = T.id_tg", { type: QueryTypes.SELECT});
+    const buscar = await sequelize.query("SELECT T.*, R.cedula_estudiante FROM TG AS T,Realiza_tg AS R LEFT JOIN Jurados AS J ON T.id_tg = J.id_tg WHERE J.id_tg IS NULL AND T.estatus = 'A' AND R.id_tg = T.id_tg", { type: QueryTypes.SELECT});
     console.log(buscar)
     return res.json(buscar)
 }
