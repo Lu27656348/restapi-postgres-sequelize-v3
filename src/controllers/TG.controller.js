@@ -107,27 +107,7 @@ export const evaluacionComite = async (req, res) => {
         return res.status(404).json("Error en evaluación de comite");
     }
 }
-/*
-export const evaluacionComite = async (req, res) => {
-    const id = req.params.id;
-    const { desicion_comite,id_cde } = req.body;
-    try {
-        const buscar = await TG.findOne({
-            where: {
-                id_tg: id
-            }
-        });
 
-        buscar.estatus = desicion_comite;
-        buscar.id_cde_tutor = id_cde;
-        buscar.evaluacion_cde = desicion_comite;
-        const actualizar = await buscar.save();
-        return res.json(buscar);
-    } catch (error) {
-        return res.status(404).json("Error en evaluación de comite");
-    }
-}
-*/
 export const evaluacionRevisor = async (req, res) => {
     const id = req.params.id;
     const { decision_revisor, observaciones_revisor, estatus } = req.body;
@@ -324,6 +304,49 @@ export const obtenerTGConRevisorRealizaTG = async (req, res) => {
         return res.status(404).json("Error en busqueda por estatus");
     }
 }
+export const obtenerTGSinConsejoEscuelaRealizaTG = async (req, res) => {
+    try {
+        const buscar = await TG.findAll({
+            where: {
+                estatus: "PE"
+            },
+            include: [
+                {
+                    model: Realiza_tg
+                }
+            ]
+        });
+        return res.json(buscar);
+    } catch (error) {
+        return res.status(404).json({mensaje: "Error en busqueda por estatus", error: error.message});
+    }
+}
+
+export const obtenerTGSinTutorAsignadoRealizaTG = async (req, res) => {
+    try {
+        const buscar = await TG.findAll({
+            where: {
+                estatus: "A",
+                tutor_asignado: false
+            },
+            include: [
+                {
+                    model: Realiza_tg
+                }
+            ]
+        });
+        return res.json(buscar);
+    } catch (error) {
+        return res.status(404).json({mensaje: "Error en busqueda por estatus", error: error.message});
+    }
+}
+
+export const obtenerTGSinJuradoAsignadoRealizaTG = async (req, res)  => {
+    const buscar = await sequelize.query("SELECT T.*, R.cedula_estudiante FROM TG AS T LEFT JOIN Jurados AS J, Realiza_tg AS R ON T.id_tg = J.id_tg WHERE J.id_tg IS NULL AND T.estatus = 'A' AND R.id_tg = T.id_tg", { type: QueryTypes.SELECT});
+    console.log(buscar)
+    return res.json(buscar)
+}
+
 export const obtenerEstudiantesDeTG = async (req, res) => {
     const id = req.params.id
     try {

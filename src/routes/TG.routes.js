@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { actualizarTG, anexarPlanilla, asignarRevisor, asignarTutorAcademico, asignarTutorEmpresarial, buscarTG, buscarTGByEstatus, buscarTGByModalidad, crearTG, descargarPlanilla, eliminarTG, evaluacionCDE, evaluacionComite, evaluacionRevisor, obtenerEstudiantesDeTG, obtenerTG, obtenerTGConRevisor, obtenerTGsinJurado, obtenerTGSinRevisor, obtenerTGconJurado, designarCDEJurado, obtenerPropuestasSinTutorAcademicoAsignado, defensaTrabajoDeGrado, obtenerTGSinRevisorRealizaTG, obtenerTGConRevisorRealizaTG} 
+import { actualizarTG, anexarPlanilla, asignarRevisor, asignarTutorAcademico, asignarTutorEmpresarial, buscarTG, buscarTGByEstatus, buscarTGByModalidad, crearTG, descargarPlanilla, eliminarTG, evaluacionCDE, evaluacionComite, evaluacionRevisor, obtenerEstudiantesDeTG, obtenerTG, obtenerTGConRevisor, obtenerTGsinJurado, obtenerTGSinRevisor, obtenerTGconJurado, designarCDEJurado, obtenerPropuestasSinTutorAcademicoAsignado, defensaTrabajoDeGrado, obtenerTGSinRevisorRealizaTG, obtenerTGConRevisorRealizaTG, obtenerTGSinTutorAsignadoRealizaTG, obtenerTGSinConsejoEscuelaRealizaTG, obtenerTGSinJuradoAsignadoRealizaTG} 
 from '../controllers/TG.controller.js'
 const router = Router();
 router.get('/TG',obtenerTG);
@@ -25,6 +25,9 @@ router.get('/con_revisor',obtenerTGConRevisor);
 router.get('/sin_revisorRealizaTG',obtenerTGSinRevisorRealizaTG);
 router.get('/con_revisorRealizaTG',obtenerTGConRevisorRealizaTG);
 
+router.get('/obtenerTGSinTutorAsignadoRealizaTG',obtenerTGSinTutorAsignadoRealizaTG);
+router.get('/obtenerTGSinConsejoEscuelaRealizaTG',obtenerTGSinConsejoEscuelaRealizaTG);
+router.get('/obtenerTGSinJuradoAsignadoRealizaTG',obtenerTGSinJuradoAsignadoRealizaTG);
 
 router.get('/alumnosTG/:id',obtenerEstudiantesDeTG);
 
