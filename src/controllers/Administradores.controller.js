@@ -38,7 +38,7 @@ export const crearAdministradores = async (req,res) => {
     res.json(administrador);
 };
 export const actualizarAdministradores = async (req,res) => {
-    const { cedula_administrador, nombres,apellidos,contrasena } = req.body;
+    const { id_usuario,cedula_administrador, nombres,apellidos,contrasena } = req.body;
     const administrador = await Administradores.findOne({
         where: {
             id_usuario: id_usuario
