@@ -1,6 +1,15 @@
 import { Administradores } from '../models/Administradores.js';
 import { QueryTypes } from 'sequelize'
 import { sequelize } from '../database/database.js';
+export const obtenerAdministradores = async (req,res) => {
+    const administradores = await Administradores.findAll();
+    res.json(administradores);
+};
+export const obtenerAdministradoresSinProfesor = async (req,res) => {
+    const buscar = await sequelize.query("SELECT A.* FROM Administradores AS A LEFT JOIN Profesores AS P ON A.cedula_administrador = P.cedula WHERE P.cedula IS NULL", { type: QueryTypes.SELECT});
+    res.json(buscar);
+};
+
 export const buscarAdministradores = async (req,res) => {
     const { cedula, contrasena } = req.body;
     console.log("cedula");
