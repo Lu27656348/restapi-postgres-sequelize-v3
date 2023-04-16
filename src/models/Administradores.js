@@ -5,6 +5,7 @@ export const Administradores = sequelize.define('administradores', {
     id_usuario: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true
     },
     cedula_administrador: {
         type: DataTypes.TEXT,

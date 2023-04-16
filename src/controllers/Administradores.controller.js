@@ -16,6 +16,33 @@ export const buscarAdministradores = async (req,res) => {
     res.json(administrador);
 };
 
+export const crearAdministradores = async (req,res) => {
+    const { cedula_administrador, nombres,apellidos,contrasena } = req.body;
+    const administrador = await Administradores.create({
+        cedula_administrador: cedula_administrador,
+        nombres: nombres,
+        apellidos: apellidos,
+        contrasena: contrasena
+    },{
+        fields: ["cedula_administrador","nombres","apellidos","contrasena"]
+    });
+    res.json(administrador);
+};
+export const actualizarAdministradores = async (req,res) => {
+    const { id_usuario,cedula_administrador, nombres,apellidos,contrasena } = req.body;
+    const administrador = await Administradores.findOne({
+        where: {
+            id_usuario: id_usuario
+        }
+    });
+    administrador.cedula_administrador = cedula_administrador;
+    administrador.nombres = nombres;
+    administrador.apellidos = apellidos;
+    administrador.contrasena = contrasena;
+    const actualizar = await administrador.save();
+    res.json( { mensaje: "Administrador actualizado correctamente", Administrador: buscar });
+};
+
 export const verificarContrasena = async (req,res) => {
     const { cedula, contrasena } = req.body;
     const administrador = await Administradores.findOne({
