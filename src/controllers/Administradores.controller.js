@@ -49,7 +49,7 @@ export const actualizarAdministradores = async (req,res) => {
     administrador.apellidos = apellidos;
     administrador.contrasena = contrasena;
     const actualizar = await administrador.save();
-    res.json( { mensaje: "Administrador actualizado correctamente", Administrador: buscar });
+    res.json( { mensaje: "Administrador actualizado correctamente", Administrador: administrador });
 };
 
 export const verificarContrasena = async (req,res) => {
