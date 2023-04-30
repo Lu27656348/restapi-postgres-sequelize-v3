@@ -6,7 +6,7 @@ const port = PORT;
 try {
     await sequelize.sync();
     app.listen(port);
-    console.log("Servidor iniciado en el puerto", port);
+    console.log("Servidor iniciado en el puerto:", port);
 } catch (error) {
     console.error('Error al iniciar servidor:', error);
-}
+} 
